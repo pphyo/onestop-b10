@@ -1,4 +1,4 @@
-package com.jdc.app;
+package com.jdc.app.support;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

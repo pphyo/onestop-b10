@@ -1,4 +1,4 @@
-package com.jdc.app;
+package com.jdc.app.support;
 
 import java.sql.SQLException;
 
@@ -20,7 +20,7 @@ public class DbInitializer {
 				salary decimal(9, 2) not null,
 				phone varchar(13),
 				department_id int not null,
-				foreign key('department_id') references department('id')
+				foreign key(department_id) references department(id)
 			);
 			""";
 	
