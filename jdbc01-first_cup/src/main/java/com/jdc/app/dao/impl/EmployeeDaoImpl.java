@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.jdc.app.dao.EmployeeDao;
@@ -126,14 +127,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> find(String name, double salary, String department) {
+		
 		List<Employee> result = new ArrayList<>();
+		List<Object> params = new LinkedList<>();
+		
+		StringBuilder sb = new StringBuilder(SELECT.concat(" where 1 = 1"));
 
+		if(!StringUtils.isEmpty(name)) {
+			sb.append(" and lower(e.name) like ?");
+			params.add(name.toLowerCase().concat("%"));
+		}
+		
+		if(salary >= AppConstant.BASIC_SALARY) {
+			sb.append(" and e.salary >= ?");
+			params.add(salary);
+		}
+		
+		if(!StringUtils.isEmpty(department)) {
+			sb.append(" and lower(d.name) = ?");
+			params.add(department.toLowerCase());
+		}
+		
 		try (var conn = DbConnector.getDbConnection(); 
-				var stmt = conn.prepareStatement(SELECT.concat(" where e.name = ? and e.salary = ? and d.name = ?"))) {
+				var stmt = conn.prepareStatement(sb.toString())) {
 
-			stmt.setString(1, name);
-			stmt.setDouble(2, salary);
-			stmt.setString(3, department);
+			for(int i = 0; i < params.size(); i ++) {
+				stmt.setObject(i + 1, params.get(i));
+			}
 			
 			var rs = stmt.executeQuery();
 
