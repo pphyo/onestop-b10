@@ -17,8 +17,10 @@ public class DbInitializer {
 			create table employee(
 				id int primary key auto_increment,
 				name varchar(50) not null,
+				gender enum('Male', 'Female', 'Other') not null,
 				salary decimal(9, 2) not null,
 				phone varchar(13),
+				assign_at date default (CURRENT_DATE),
 				department_id int not null,
 				foreign key(department_id) references department(id)
 			);
@@ -50,10 +52,13 @@ public class DbInitializer {
 	public static void drop(String... tables) {
 		try(var conn = DbConnector.getDbConnection();
 				var stmt = conn.createStatement()) {
+			stmt.execute("set foreign_key_checks = 0");
 			
 			for(var table : tables) {
 				stmt.execute("drop table if exists %s".formatted(table));
 			}
+			
+			stmt.execute("set foreign_key_checks = 1");
 			
 		} catch(SQLException e) {
 			e.printStackTrace();

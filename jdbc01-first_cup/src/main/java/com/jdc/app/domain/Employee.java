@@ -1,11 +1,19 @@
 package com.jdc.app.domain;
 
+import java.time.LocalDate;
+
 public class Employee {
 
+	public enum Gender {
+		Male, Female, Other
+	}
+	
 	private int id;
 	private String name;
+	private Gender gender;
 	private double salary;
 	private String phone;
+	private LocalDate assignAt;
 	private Department department;
 
 	public int getId() {
@@ -46,6 +54,22 @@ public class Employee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public LocalDate getAssignAt() {
+		return assignAt;
+	}
+
+	public void setAssignAt(LocalDate assignAt) {
+		this.assignAt = assignAt;
 	}
 
 }

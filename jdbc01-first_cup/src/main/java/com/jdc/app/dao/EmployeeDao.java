@@ -15,6 +15,7 @@ public interface EmployeeDao {
 	int save(Employee employee);
 	int update(int id, Employee employee);
 	void delete(int id);
+	long count();
 	Employee findById(int id);
 	List<Employee> find(String name, double salary, String department);
 
