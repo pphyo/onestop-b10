@@ -7,6 +7,7 @@ import com.jdc.app.domain.Department;
 public interface DepartmentDao {
 	
 	int create(String name);
+	int saveAll(List<Department> departments);
 	int update(String newName, int id);
 	void delete(int id);
 	Department findById(int id);

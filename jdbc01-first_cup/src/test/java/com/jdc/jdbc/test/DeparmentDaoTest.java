@@ -28,7 +28,28 @@ public class DeparmentDaoTest {
 	static DepartmentDao depDao;
 	
 	@ParameterizedTest
+	@MethodSource("getDepartmentList")
+	@Order(6)
+	void test_for_saveAll(List<Department> departments) {
+		var resultCount = depDao.saveAll(departments);
+		assertEquals(5, resultCount);
+	}
+	
+	static Stream<Arguments> getDepartmentList() {
+		return Stream.of(Arguments.of(
+					List.of(
+						new Department("Administation"),
+						new Department("Purchasing"),
+						new Department("Shipping"),
+						new Department("IT"),
+						new Department("Executive")
+					)
+				));
+	}
+	
+	@ParameterizedTest
 	@CsvSource("1, 4")
+	@Order(5)
 	void test_for_delete(int idForDelete, int expectedCount) {
 		depDao.delete(idForDelete);
 		var count = depDao.findAll().size();

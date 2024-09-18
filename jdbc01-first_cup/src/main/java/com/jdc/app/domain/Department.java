@@ -5,6 +5,12 @@ public class Department {
 	private int id;
 	private String name;
 
+	public Department(String name) {
+		setName(name);
+	}
+	
+	public Department() {}
+	
 	public int getId() {
 		return id;
 	}

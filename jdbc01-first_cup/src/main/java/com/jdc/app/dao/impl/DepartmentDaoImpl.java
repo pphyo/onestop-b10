@@ -34,6 +34,28 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		
 		return 0;
 	}
+	
+	public int saveAll(List<Department> departments) {
+		int resultCount = 0;
+		final String sql = "insert into department (name) values (?)";
+		try(var conn = DbConnector.getDbConnection();
+				var stmt = conn.prepareStatement(sql)) {
+			
+			for(var department : departments) {
+				
+				stmt.setString(1, department.getName());
+				
+				stmt.addBatch();
+				
+			}
+			
+			resultCount = stmt.executeBatch().length;
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultCount;
+	}
 
 	@Override
 	public int update(String newName, int id) {
