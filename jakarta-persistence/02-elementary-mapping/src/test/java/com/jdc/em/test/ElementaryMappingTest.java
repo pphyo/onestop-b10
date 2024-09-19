@@ -8,7 +8,12 @@ public class ElementaryMappingTest {
 	
 	@Test
 	void test() {
-		try(var emf = Persistence.createEntityManagerFactory("em")) {}
+		try(var emf = Persistence.createEntityManagerFactory("em");
+				var em = emf.createEntityManager()) {
+			
+			
+			
+		}
 	}
 
 }

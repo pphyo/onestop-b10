@@ -62,5 +62,6 @@
 	<modules>
 		<module>01-hello-jpa</module>
 		<module>02-elementary-mapping</module>
+		<module>03-collection-mapping</module>
 	</modules>
 </project>
