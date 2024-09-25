@@ -66,5 +66,7 @@
 		<module>
 		04-id-mapping
 		</module>
+		<module>05-relationship-mapping</module>
+		<module>06-bidirectional-mapping</module>
 	</modules>
 </project>
