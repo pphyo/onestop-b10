@@ -15,7 +15,7 @@ public class ToOneTest {
 	@Test
 	void test() {
 		try(var emf = Persistence.createEntityManagerFactory("rm");
-			var em = emf.createEntityManager()) {
+				var em = emf.createEntityManager()) {
 			
 //			 insert => persist
 //			 update => merge
