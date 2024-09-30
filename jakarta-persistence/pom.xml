@@ -71,5 +71,8 @@
 		<module>07-inhertance-mapping</module>
 		<module>08-entity-manager</module>
 		<module>09-persisence-context</module>
+		<module>10-callback-listener</module>
+		<module>11-id-and-mapsid</module>
+		<module>12-learner</module>
 	</modules>
 </project>
